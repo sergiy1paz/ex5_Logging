@@ -4,12 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
+
 namespace ex5_Logging.CustomLogger
 {
     public class ColorConsoleLogger : ILogger
     {
-        private readonly static object _lock = new object();
+        private static readonly object _lock = new object();
         
+
+        private readonly string _name;
+        public ColorConsoleLogger(string name)
+        {
+            _name = name;
+        }
         public IDisposable BeginScope<TState>(TState state)
         {
             return null;
@@ -67,5 +74,7 @@ namespace ex5_Logging.CustomLogger
         {
             Console.ForegroundColor = ConsoleColor.White;
         }
+
+        
     }
 }
