@@ -1,13 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ex5_Logging.CustomLogger;
-using ex5_Logging.Extensions;
+
 
 namespace ex5_Logging
 {
@@ -20,10 +15,10 @@ namespace ex5_Logging
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(builder =>
+                .ConfigureLogging((hostContext, builder) =>
                 {
                     builder.ClearProviders();
-                    builder.AddColorConsole();
+                    builder.AddProvider(new ColorConsoleLoggerProvider());
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

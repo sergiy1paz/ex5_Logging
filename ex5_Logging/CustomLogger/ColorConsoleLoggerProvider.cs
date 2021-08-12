@@ -6,11 +6,12 @@ using Microsoft.Extensions.Logging;
 
 namespace ex5_Logging.CustomLogger
 {
+    [ProviderAlias("CustomLogger")]
     public class ColorConsoleLoggerProvider : ILoggerProvider
     {
         public ILogger CreateLogger(string categoryName)
         {
-            return new ColorConsoleLogger();
+            return new ColorConsoleLogger(categoryName);
         }
 
         public void Dispose()
